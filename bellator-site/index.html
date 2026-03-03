@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Bellator Barbearia • Agendamento</title>
+  <meta name="theme-color" content="#0b0b0d"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">⚔️</div>
+        <div class="brand__text">
+          <div class="brand__name">BELLATOR</div>
+          <div class="brand__sub">BARBEARIA • DESDE 2020</div>
+        </div>
+      </div>
+
+      <a class="chip" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener">
+        WhatsApp: (81) 99432-8093
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="shell" aria-label="Aplicativo de agendamento">
+      <div class="phone">
+        <div class="phone__status" aria-hidden="true"></div>
+
+        <div class="app" id="app">
+          <!-- LOGIN / CADASTRO -->
+          <section class="screen is-active" data-screen="auth">
+            <div class="hero">
+              <div class="logo">
+                <div class="logo__badge" aria-hidden="true">🛡️</div>
+                <div class="logo__title">BELLATOR</div>
+                <div class="logo__subtitle">BARBEARIA</div>
+                <div class="logo__since">DESDE 2020</div>
+              </div>
+
+              <div class="tabs" role="tablist" aria-label="Entrar ou cadastrar">
+                <button class="tab is-active" data-tab="login" role="tab" aria-selected="true">ENTRAR</button>
+                <button class="tab" data-tab="signup" role="tab" aria-selected="false">CADASTRAR</button>
+              </div>
+
+              <div class="card">
+                <div class="hint" id="authHint">Entre com suas credenciais</div>
+
+                <div class="pill">Entre com o seu E-MAIL</div>
+
+                <label class="field">
+                  <span>E-mail</span>
+                  <input id="email" type="email" placeholder="seu@email.com" autocomplete="email"/>
+                </label>
+
+                <label class="field">
+                  <span>Senha</span>
+                  <input id="password" type="password" placeholder="••••••••" autocomplete="current-password"/>
+                  <button class="link" type="button" id="forgotBtn">Esqueceu a senha?</button>
+                </label>
+
+                <button class="btn btn--primary" id="authBtn">ENTRAR</button>
+                <p class="tiny">* Demonstração front-end. Os dados ficam salvos só no seu navegador.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- MENU INICIAL -->
+          <section class="screen" data-screen="home">
+            <div class="bar">
+              <button class="iconbtn" data-action="logout" title="Sair" aria-label="Sair">⎋</button>
+              <div class="bar__title">Início</div>
+              <a class="iconbtn" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">💬</a>
+            </div>
+
+            <div class="content">
+              <div class="panel">
+                <div class="panel__title">Olá, <span id="userName">cliente</span> 👋</div>
+                <div class="panel__sub">O que deseja fazer?</div>
+              </div>
+
+              <div class="grid">
+                <button class="tile" data-go="new">
+                  <div class="tile__icon">✂️</div>
+                  <div class="tile__text">
+                    <strong>Novo agendamento</strong>
+                    <span>Escolha serviço e horário</span>
+                  </div>
+                </button>
+
+                <button class="tile" data-go="appointments">
+                  <div class="tile__icon">📅</div>
+                  <div class="tile__text">
+                    <strong>Meus agendamentos</strong>
+                    <span>Ver, editar, cancelar</span>
+                  </div>
+                </button>
+
+                <a class="tile" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener">
+                  <div class="tile__icon">💬</div>
+                  <div class="tile__text">
+                    <strong>Falar no WhatsApp</strong>
+                    <span>Agendar direto com a barbearia</span>
+                  </div>
+                </a>
+
+                <button class="tile" data-go="screens">
+                  <div class="tile__icon">🖼️</div>
+                  <div class="tile__text">
+                    <strong>Ver protótipo</strong>
+                    <span>Prints enviados (referência)</span>
+                  </div>
+                </button>
+              </div>
+
+              <div class="cta">
+                <a class="btn btn--ghost" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener">Agendar via WhatsApp</a>
+              </div>
+            </div>
+
+            <nav class="bottomnav" aria-label="Navegação inferior">
+              <button class="bottomnav__item is-active" data-nav="home">Início</button>
+              <button class="bottomnav__item" data-nav="appointments">Agendamentos</button>
+              <button class="bottomnav__item" data-nav="new">Agendar</button>
+            </nav>
+          </section>
+
+          <!-- MEUS AGENDAMENTOS -->
+          <section class="screen" data-screen="appointments">
+            <div class="bar">
+              <button class="iconbtn" data-back title="Voltar" aria-label="Voltar">←</button>
+              <div class="bar__title">
+                Meus Agendamentos
+                <div class="bar__sub">Agendamento reservado</div>
+              </div>
+              <button class="iconbtn" data-go="new" title="Novo" aria-label="Novo">＋</button>
+            </div>
+
+            <div class="content">
+              <div class="sectionTitle">Próximos Agendamentos</div>
+              <div id="appointmentsList" class="list"></div>
+
+              <button class="btn btn--primary" data-go="new">NOVO AGENDAMENTO</button>
+            </div>
+          </section>
+
+          <!-- ESCOLHER SERVIÇO -->
+          <section class="screen" data-screen="service">
+            <div class="bar">
+              <button class="iconbtn" data-back title="Voltar" aria-label="Voltar">←</button>
+              <div class="bar__title">Escolha o Serviço</div>
+              <div></div>
+            </div>
+
+            <div class="content">
+              <div class="sectionTitle">Serviços disponíveis</div>
+
+              <div class="choice">
+                <button class="choice__item" data-service="Corte Tradicional" data-price="25.00">
+                  <div class="choice__left">
+                    <div class="choice__icon">✂️</div>
+                    <div class="choice__meta">
+                      <strong>Corte Tradicional</strong>
+                      <span>Clássico e rápido</span>
+                    </div>
+                  </div>
+                  <div class="choice__right">R$ 25,00</div>
+                </button>
+
+                <button class="choice__item" data-service="Barba Completa" data-price="20.00">
+                  <div class="choice__left">
+                    <div class="choice__icon">🪒</div>
+                    <div class="choice__meta">
+                      <strong>Barba Completa</strong>
+                      <span>Acabamento na navalha</span>
+                    </div>
+                  </div>
+                  <div class="choice__right">R$ 20,00</div>
+                </button>
+
+                <button class="choice__item" data-service="Combo (Corte + Barba)" data-price="40.00">
+                  <div class="choice__left">
+                    <div class="choice__icon">🔥</div>
+                    <div class="choice__meta">
+                      <strong>Combo (Corte + Barba)</strong>
+                      <span>Melhor custo-benefício</span>
+                    </div>
+                  </div>
+                  <div class="choice__right">R$ 40,00</div>
+                </button>
+              </div>
+
+              <div class="cta">
+                <button class="btn btn--primary" id="toBarberBtn" disabled>CONTINUAR</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ESCOLHER BARBEIRO -->
+          <section class="screen" data-screen="barber">
+            <div class="bar">
+              <button class="iconbtn" data-back title="Voltar" aria-label="Voltar">←</button>
+              <div class="bar__title">Escolha o Barbeiro</div>
+              <div></div>
+            </div>
+
+            <div class="content">
+              <div class="mini">
+                <div class="mini__label">Serviço selecionado</div>
+                <div class="mini__value" id="miniService">—</div>
+              </div>
+
+              <div class="choice">
+                <button class="choice__item" data-barber="Pablo Yan" data-rating="4.9" data-reviews="127">
+                  <div class="choice__left">
+                    <div class="choice__icon">👤</div>
+                    <div class="choice__meta">
+                      <strong>Pablo Yan</strong>
+                      <span>Especialista em degradê</span>
+                      <span class="stars">⭐ 4.9 (127 avaliações)</span>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="choice__item" data-barber="Norton França" data-rating="4.8" data-reviews="98">
+                  <div class="choice__left">
+                    <div class="choice__icon">👤</div>
+                    <div class="choice__meta">
+                      <strong>Norton França</strong>
+                      <span>Barba + finalização</span>
+                      <span class="stars">⭐ 4.8 (98 avaliações)</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              <div class="cta">
+                <button class="btn btn--primary" id="toDateBtn" disabled>CONTINUAR</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- DATA E HORA -->
+          <section class="screen" data-screen="datetime">
+            <div class="bar">
+              <button class="iconbtn" data-back title="Voltar" aria-label="Voltar">←</button>
+              <div class="bar__title">
+                Data e Horário
+                <div class="bar__sub">Escolha quando quer ser atendido</div>
+              </div>
+              <div></div>
+            </div>
+
+            <div class="content">
+              <div class="summary">
+                <div><span>Serviço</span><strong id="sumService">—</strong></div>
+                <div><span>Barbeiro</span><strong id="sumBarber">—</strong></div>
+              </div>
+
+              <div class="sectionTitle">Selecione a Data</div>
+              <label class="field">
+                <span>Data</span>
+                <input id="dateInput" type="date"/>
+              </label>
+
+              <div class="sectionTitle">Horários Disponíveis</div>
+              <div class="times" id="times"></div>
+
+              <div class="cta">
+                <button class="btn btn--primary" id="confirmBtn" disabled>CONFIRMAR</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- CONFIRMADO -->
+          <section class="screen" data-screen="confirmed">
+            <div class="bar">
+              <button class="iconbtn" data-go="home" title="Início" aria-label="Início">⌂</button>
+              <div class="bar__title">Agendamento Confirmado!</div>
+              <a class="iconbtn" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">💬</a>
+            </div>
+
+            <div class="content">
+              <div class="check">✅</div>
+              <div class="big">Agendamento Confirmado!</div>
+              <div class="muted">Seu horário foi reservado com sucesso.</div>
+
+              <div class="card card--flat" id="confirmCard"></div>
+
+              <div class="notice">
+                <strong>Importante:</strong> Chegue com 5 minutos de antecedência. Cancelamentos devem ser feitos com pelo menos 2 horas de antecedência.
+              </div>
+
+              <button class="btn btn--primary" data-go="appointments">VER MEUS AGENDAMENTOS</button>
+              <a class="btn btn--ghost" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
+            </div>
+          </section>
+
+          <!-- GALERIA DE PRINTS (referência) -->
+          <section class="screen" data-screen="screens">
+            <div class="bar">
+              <button class="iconbtn" data-back title="Voltar" aria-label="Voltar">←</button>
+              <div class="bar__title">Prints do protótipo</div>
+              <div></div>
+            </div>
+            <div class="content">
+              <p class="muted">Essas imagens foram enviadas por você. Servem como referência visual.</p>
+              <div class="gallery" id="screensGallery"></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="phone__shadow" aria-hidden="true"></div>
+      </div>
+
+      <aside class="side">
+        <h1>Transformei seu protótipo em site</h1>
+        <p>
+          Esse é um <strong>site em HTML/CSS/JS</strong> que simula o fluxo do app (entrar, agendar, confirmar),
+          com dados salvos no <strong>localStorage</strong> (sem servidor).
+        </p>
+
+        <div class="side__box">
+          <div class="side__row"><span>WhatsApp</span><strong>(81) 99432-8093</strong></div>
+          <div class="side__row"><span>Tipo</span><strong>Single Page App</strong></div>
+          <div class="side__row"><span>Deploy</span><strong>GitHub Pages</strong></div>
+        </div>
+
+        <div class="side__actions">
+          <a class="btn btn--primary" href="https://wa.me/5581994328093?text=Ol%C3%A1%21%20Quero%20agendar%20um%20hor%C3%A1rio%20na%20Bellator%20Barbearia." target="_blank" rel="noopener">Agendar via WhatsApp</a>
+          <button class="btn btn--ghost" id="resetDemo">Resetar demo</button>
+        </div>
+
+        <p class="tiny">
+          Quer integrar de verdade com agendamento (painel/admin, banco de dados, horários travados)?
+          Dá pra evoluir pra um back-end depois (Firebase/Node/Python).
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
