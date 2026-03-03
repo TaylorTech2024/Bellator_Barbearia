@@ -12,9 +12,9 @@ export function Calendar({value, onChange, minDate=new Date(), disabledDates=[]}
   const root = el("div", {class:"calendar reveal"});
   const head = el("div", {class:"cal-head"});
   const prev = el("button", {class:"icon-btn", ariaLabel:"Mês anterior", title:"Mês anterior"});
-  prev.innerHTML = "<span class='icon' data-icon='back'></span>";
+  prev.innerHTML = "<i data-lucide='arrow-left'></i>";
   const next = el("button", {class:"icon-btn", ariaLabel:"Próximo mês", title:"Próximo mês"});
-  next.innerHTML = "<span class='icon' data-icon='back' style='transform:rotate(180deg)'></span>";
+  next.innerHTML = "<i data-lucide='arrow-right'></i>";
   const title = el("div", {class:"cal-title"});
   head.append(prev, title, next);
   root.append(head);

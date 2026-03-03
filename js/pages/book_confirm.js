@@ -16,7 +16,7 @@ export function BookConfirmPage(ctx){
     el("div",{class:"section"}, [
       el("div",{class:"card reveal"}, [
         el("div",{style:"display:flex; align-items:center; justify-content:center; margin:8px 0 6px"}, [
-          el("span",{class:"icon", "data-icon":"check", style:"width:42px;height:42px"})
+          el("i",{"data-lucide":"check"})
         ]),
         el("h1",{class:"h1", style:"text-align:center;margin-top:0"}, "Agendamento Confirmado!"),
         el("p",{class:"sub", style:"text-align:center;margin-top:-6px"}, "Seu horário foi reservado com sucesso"),
@@ -33,7 +33,7 @@ export function BookConfirmPage(ctx){
   wrap.append(
     el("div",{class:"card reveal"}, [
       el("div",{class:"kv"}, [
-        el("span",{class:"icon","data-icon":"pin"}),
+        el("i",{"data-lucide":"map-pin"}),
         el("div",{}, [
           el("small",{},"Localização"),
           el("br"),
@@ -46,7 +46,7 @@ export function BookConfirmPage(ctx){
       el("div",{class:"hr"}),
       el("div",{class:"card card--ghost", style:"border-radius:16px;padding:12px"}, [
         el("div",{style:"display:flex; gap:10px; align-items:flex-start"}, [
-          el("span",{class:"icon","data-icon":"shield", style:"margin-top:2px"}),
+          el("i",{"data-lucide":"shield"}),
           el("div",{}, [
             el("div",{style:"font-weight:700; font-size:12px"}, "Importante:"),
             el("div",{class:"helper"}, "Chegue com 5 minutos de antecedência. Cancelamentos devem ser feitos com pelo menos 2 horas de antecedência.")
@@ -80,8 +80,13 @@ export function BookConfirmPage(ctx){
 
 function kv(icon, label, left, right){
   return el("div",{class:"kv"}, [
-    el("span",{class:"icon","data-icon":icon}),
+    el("i",{"data-lucide": mapIcon(icon)}),
     el("div",{}, [el("small",{}, label), el("br"), el("strong",{}, left)]),
     el("div",{class:"right"}, right||"")
   ]);
+}
+
+function mapIcon(name){
+  const m = {scissors:"scissors",user:"user",calendar:"calendar",clock:"clock",star:"star",pin:"map-pin",check:"check"};
+  return m[name] || name || "circle";
 }

@@ -58,7 +58,7 @@ function summaryBar(service){
         el("div",{style:"font-weight:700"}, service.nome),
         el("div",{class:"helper"}, `${service.duracaoMin} min • ${money(service.preco)}`)
       ]),
-      el("span",{class:"icon","data-icon":"scissors"})
+      el("i",{"data-lucide":"scissors"})
     ])
   ]);
 

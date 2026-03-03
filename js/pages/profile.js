@@ -13,13 +13,13 @@ export function ProfilePage(ctx){
   const card = el("div",{class:"card reveal"});
   card.append(
     el("div",{class:"kv"}, [
-      el("span",{class:"icon","data-icon":"user"}),
+      el("i",{"data-lucide":"user"}),
       el("div",{}, [el("strong",{}, user.nome), el("br"), el("small",{}, user.email)]),
       el("div",{class:"right"}, user.role.toUpperCase())
     ]),
     el("div",{class:"hr"}),
     el("div",{class:"kv"}, [
-      el("span",{class:"icon","data-icon":"pin"}),
+      el("i",{"data-lucide":"map-pin"}),
       el("div",{}, [el("strong",{},"Bellator Barbearia"), el("br"), el("small",{}, "R. Aristóteles Paes de Azevedo, 145 - Pau Amarelo, Paulista - PE")]),
       el("div",{class:"right"},"")
     ]),

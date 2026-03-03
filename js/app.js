@@ -8,6 +8,9 @@ const menuBtn = document.getElementById("menuBtn");
 const bottomNav = document.getElementById("bottomNav");
 const whatsBtn = document.getElementById("whatsBtn");
 
+let __isRendering = false;
+let __pendingRender = false;
+
 // WhatsApp (pedido do usuário)
 const WHATS_NUMBER = "5581994328093"; // (81) 99432-8093
 const defaultMsg = encodeURIComponent("Olá! Quero agendar um horário na Bellator Barbearia. 👊");
@@ -76,10 +79,36 @@ async function render(){
     showMenu: me && route.nav,
   });
 
-  // smooth view swap
-  view.innerHTML = "";
-  const pageNode = route.page({ ...ctx, ...(me||{}) });
-  view.appendChild(pageNode);
+  // smooth view swap (no black flash): fade old content, then swap
+  if(__isRendering){
+    __pendingRender = true;
+    return;
+  }
+  __isRendering = true;
+
+  const swap = () => {
+    view.innerHTML = "";
+    const pageNode = route.page({ ...ctx, ...(me||{}) });
+    view.appendChild(pageNode);
+
+    // render lucide icons after DOM update
+    try{ window.lucide?.createIcons?.(); }catch(e){}
+
+    // fade in new view
+    requestAnimationFrame(()=>{
+      view.classList.remove("is-fading");
+      __isRendering = false;
+      if(__pendingRender){
+        __pendingRender = false;
+        render();
+      }
+    });
+  };
+
+  // start fade out (keeps old content visible while fading)
+  view.classList.add("is-fading");
+  // swap after transition duration
+  setTimeout(swap, 170);
 
   // highlight nav
   if(route.nav){
@@ -111,5 +140,61 @@ backBtn.addEventListener("click", ()=>{
 menuBtn.addEventListener("click", ()=>{
   const me = api.me();
   if(!me) return;
-  toast(me.user.role === "admin" ? "Você está como ADMIN" : (me.user.role==="barbeiro" ? "Você está como BARBEIRO" : "Você está como CLIENTE"));
+  openMenu(me.user);
 });
+
+function openMenu(user){
+  // create once
+  let backdrop = document.querySelector(".sheet-backdrop");
+  let sheet = document.querySelector(".sheet");
+  if(!backdrop){
+    backdrop = document.createElement("div");
+    backdrop.className = "sheet-backdrop";
+    document.body.appendChild(backdrop);
+  }
+  if(!sheet){
+    sheet = document.createElement("aside");
+    sheet.className = "sheet";
+    document.body.appendChild(sheet);
+  }
+
+  const roleLabel = user.role === "admin" ? "ADMIN" : (user.role==="barbeiro" ? "BARBEIRO" : "CLIENTE");
+  sheet.innerHTML = `
+    <div class="sheet__top">
+      <div>
+        <div class="sheet__title">MENU</div>
+        <div class="sheet__sub">${user.nome || "Usuário"} • ${roleLabel}</div>
+      </div>
+      <button class="icon-btn" id="sheetClose" aria-label="Fechar"><i data-lucide="x"></i></button>
+    </div>
+    <div class="sheet__list">
+      <button class="sheet__item" data-go="#/home"><i data-lucide="home"></i><span>Início</span></button>
+      <button class="sheet__item" data-go="#/book/service"><i data-lucide="scissors"></i><span>Agendar</span></button>
+      <button class="sheet__item" data-go="#/appointments"><i data-lucide="calendar"></i><span>Meus agendamentos</span></button>
+      <button class="sheet__item" data-go="#/profile"><i data-lucide="user"></i><span>Perfil</span></button>
+      ${user.role==="admin" ? `<button class="sheet__item" data-go="#/admin"><i data-lucide="layout-dashboard"></i><span>Painel Admin</span></button>` : ""}
+      ${user.role==="barbeiro" ? `<button class="sheet__item" data-go="#/barber"><i data-lucide="calendar-check"></i><span>Painel Barbeiro</span></button>` : ""}
+    </div>
+    <div class="sheet__spacer"></div>
+    <button class="sheet__item" id="sheetLogout"><i data-lucide="log-out"></i><span>Sair</span></button>
+  `;
+
+  function close(){
+    sheet.classList.remove("is-open");
+    backdrop.classList.remove("is-open");
+    document.removeEventListener("keydown", onKey);
+  }
+  function onKey(e){ if(e.key==="Escape") close(); }
+
+  backdrop.onclick = close;
+  sheet.querySelector("#sheetClose").onclick = close;
+  sheet.querySelectorAll("[data-go]").forEach(btn=>{
+    btn.onclick = ()=>{ location.hash = btn.getAttribute("data-go"); close(); };
+  });
+  sheet.querySelector("#sheetLogout").onclick = ()=>{ api.logout(); location.hash="#/auth"; close(); };
+
+  backdrop.classList.add("is-open");
+  sheet.classList.add("is-open");
+  document.addEventListener("keydown", onKey);
+  try{ window.lucide?.createIcons?.(); }catch(e){}
+}

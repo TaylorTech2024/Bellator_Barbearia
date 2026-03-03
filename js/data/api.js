@@ -6,15 +6,6 @@ export function ensureDB(){
   let db = loadDB();
   if(!db){
     db = makeSeed();
-    // set password hashes
-    const patchPasswords = async ()=>{
-      for(const u of db.users){
-        u.senhaHash = await sha256("123456");
-      }
-      saveDB(db);
-    };
-    // fire and forget (hashing)
-    patchPasswords();
     saveDB(db);
   }
   return db;

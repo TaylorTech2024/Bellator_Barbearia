@@ -14,7 +14,7 @@
   <div id="app" class="app">
     <header class="topbar">
       <button class="icon-btn" id="backBtn" aria-label="Voltar" title="Voltar">
-        <span class="icon" data-icon="back"></span>
+        <i data-lucide="arrow-left"></i>
       </button>
 
       <div class="brand">
@@ -26,7 +26,7 @@
       </div>
 
       <button class="icon-btn" id="menuBtn" aria-label="Menu" title="Menu">
-        <span class="icon" data-icon="menu"></span>
+        <i data-lucide="menu"></i>
       </button>
     </header>
 
@@ -34,27 +34,28 @@
 
     <nav id="bottomNav" class="bottom-nav" aria-label="Navegação">
       <a class="bottom-nav__item" href="#/home" data-route="home">
-        <span class="icon" data-icon="home"></span>
+        <i data-lucide="home"></i>
         <span>Início</span>
       </a>
       <a class="bottom-nav__item" href="#/appointments" data-route="appointments">
-        <span class="icon" data-icon="calendar"></span>
+        <i data-lucide="calendar"></i>
         <span>Agenda</span>
       </a>
       <a class="bottom-nav__item" href="#/profile" data-route="profile">
-        <span class="icon" data-icon="user"></span>
+        <i data-lucide="user"></i>
         <span>Perfil</span>
       </a>
     </nav>
 
     <a id="whatsBtn" class="whats" target="_blank" rel="noopener" aria-label="WhatsApp" title="Chamar no WhatsApp">
-      <span class="icon" data-icon="whatsapp"></span>
+      <i data-lucide="message-circle"></i>
     </a>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <div id="modalRoot" class="modal-root" aria-hidden="true"></div>
   </div>
 
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script type="module" src="./js/app.js"></script>
 </body>
 </html>

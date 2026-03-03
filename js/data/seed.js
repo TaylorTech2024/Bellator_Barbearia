@@ -18,9 +18,9 @@ export function makeSeed(){
 
   // Usuários (cliente/barbeiro/admin). Para demo, senha = 123456
   const users = [
-    { id:"adm_1", role:"admin", nome:"Administrador", email:"admin@bellator.com", telefone:"", senhaHash:"", createdAt: nowISO() },
-    { id:"cli_demo", role:"cliente", nome:"Cliente Demo", email:"cliente@bellator.com", telefone:"81999990000", senhaHash:"", createdAt: nowISO() },
-    { id:"barb_user_carlos", role:"barbeiro", nome:"Carlos", email:"carlos@bellator.com", telefone:"", senhaHash:"", barberId:"barb_carlos", createdAt: nowISO() },
+    { id:"adm_1", role:"admin", nome:"Administrador", email:"admin@bellator.com", telefone:"", senhaHash:"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", createdAt: nowISO() },
+    { id:"cli_demo", role:"cliente", nome:"Cliente Demo", email:"cliente@bellator.com", telefone:"81999990000", senhaHash:"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", createdAt: nowISO() },
+    { id:"barb_user_carlos", role:"barbeiro", nome:"Carlos", email:"carlos@bellator.com", telefone:"", senhaHash:"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", barberId:"barb_carlos", createdAt: nowISO() },
   ];
 
   // Agendamentos (RF03/RF07)

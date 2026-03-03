@@ -22,7 +22,7 @@ export function BookServicePage(ctx){
         el("div",{class:"card__row"}, [
           el("div",{}, [
             el("div",{class:"card__title"}, [
-              el("span",{class:"icon","data-icon": s.icon || "scissors", style:"margin-right:8px;vertical-align:middle"}),
+              el("i",{"data-lucide": (s.icon || "scissors")}),
               s.nome
             ]),
             el("div",{class:"card__desc"}, s.descricao || "")

@@ -12,13 +12,13 @@ export function AdminPage(ctx){
   const card = el("div",{class:"card reveal"});
   card.append(
     el("div",{class:"kv"}, [
-      el("span",{class:"icon","data-icon":"calendar"}),
+      el("i",{"data-lucide":"calendar"}),
       el("div",{}, [el("small",{},"Atendimentos concluídos"), el("br"), el("strong",{}, String(report.doneCount))]),
       el("div",{class:"right"},"")
     ]),
     el("div",{class:"hr"}),
     el("div",{class:"kv"}, [
-      el("span",{class:"icon","data-icon":"star"}),
+      el("i",{"data-lucide":"star"}),
       el("div",{}, [el("small",{},"Faturamento (concluídos)"), el("br"), el("strong",{}, money(report.total))]),
       el("div",{class:"right"},"")
     ])
@@ -29,7 +29,7 @@ export function AdminPage(ctx){
   const table = el("div",{style:"display:grid; gap:10px"});
   for(const [k,v] of Object.entries(report.byService)){
     table.append(el("div",{class:"kv"}, [
-      el("span",{class:"icon","data-icon":"scissors"}),
+      el("i",{"data-lucide":"scissors"}),
       el("div",{}, [el("strong",{}, k), el("br"), el("small",{}, "Quantidade")]),
       el("div",{class:"right"}, String(v))
     ]));

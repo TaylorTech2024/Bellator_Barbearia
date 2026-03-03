@@ -144,7 +144,7 @@ function summary(service, barber){
 
   function row(icon, label, left, right){
     return el("div",{class:"kv", style:"grid-template-columns:20px 1fr auto"}, [
-      el("span",{class:"icon","data-icon":icon}),
+      el("i",{"data-lucide": mapIcon(icon)}),
       el("div",{}, [el("small",{}, label), el("br"), el("strong",{}, left)]),
       el("div",{class:"right"}, right)
     ]);
@@ -153,4 +153,9 @@ function summary(service, barber){
     try{ return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(v); }
     catch{ return "R$ "+Number(v).toFixed(2).replace(".",","); }
   }
+}
+
+function mapIcon(name){
+  const m = {scissors:"scissors",user:"user",calendar:"calendar",clock:"clock",star:"star",pin:"map-pin"};
+  return m[name] || name || "circle";
 }

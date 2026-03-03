@@ -23,7 +23,7 @@ export function HomePage(ctx){
   wrap.append(
     el("div", {class:"section reveal"}, [
       el("button", {class:"btn btn--primary", type:"button", onClick: ()=> location.hash="#/book/service"}, [
-        el("span",{class:"icon", "data-icon":"scissors"}), "Agendar Agora"
+        el("i",{"data-lucide":"scissors"}), "Agendar Agora"
       ]),
       el("div",{style:"height:10px"}),
       el("button", {class:"btn", type:"button", onClick: ()=> location.hash="#/appointments"}, "Ver meus agendamentos")
@@ -62,7 +62,7 @@ function firstName(n){ return (n||"").trim().split(/\s+/)[0] || "você"; }
 
 function stat(icon, value, label){
   return el("div",{class:"stat reveal"}, [
-    el("span",{class:"icon","data-icon":icon}),
+    el("i",{"data-lucide": mapIcon(icon)}),
     el("div",{class:"stat__v"}, value),
     el("div",{class:"stat__k"}, label),
   ]);
@@ -71,11 +71,16 @@ function stat(icon, value, label){
 function feature(icon, title, desc){
   return el("div",{class:"card card--tight reveal"}, [
     el("div",{class:"card__row"}, [
-      el("span",{class:"icon","data-icon":icon}),
+      el("i",{"data-lucide": mapIcon(icon)}),
       el("div",{}, [
         el("div",{class:"card__title"}, title),
         el("div",{class:"card__desc"}, desc),
       ])
     ])
   ]);
+}
+
+function mapIcon(name){
+  const m = {star:"star",clock:"clock",pin:"map-pin",scissors:"scissors",shield:"shield",user:"user",calendar:"calendar",home:"home"};
+  return m[name] || name || "circle";
 }
